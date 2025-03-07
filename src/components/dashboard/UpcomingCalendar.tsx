@@ -87,9 +87,9 @@ const UpcomingCalendar: React.FC<UpcomingCalendarProps> = ({ events = [] }) => {
               day_today: "bg-dental-50 text-dental-900",
             }}
             components={{
-              Day: ({ day, ...props }) => (
+              Day: ({ date, ...props }) => (
                 <button {...props}>
-                  {customDayRender(day, calendarEvents)}
+                  {customDayRender(date, calendarEvents)}
                 </button>
               ),
             }}
