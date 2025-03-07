@@ -11,7 +11,8 @@ import {
   CreditCard,
   Menu, 
   X, 
-  ChevronRight
+  ChevronRight,
+  UserCog
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -22,9 +23,10 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { icon: Home, label: 'Tableau de bord', path: '/' },
+  { icon: Home, label: 'Accueil', path: '/' },
   { icon: Calendar, label: 'Rendez-vous', path: '/rendez-vous' },
   { icon: Users, label: 'Patients', path: '/patients' },
+  { icon: UserCog, label: 'Docteurs', path: '/docteurs' },
   { icon: ClipboardList, label: 'Dossiers médicaux', path: '/dossiers' },
   { icon: CreditCard, label: 'Facturation', path: '/facturation' },
   { icon: Settings, label: 'Paramètres', path: '/parametres' },
@@ -65,7 +67,7 @@ const Sidebar = () => {
       {/* Sidebar */}
       <motion.aside
         className={cn(
-          "fixed top-0 left-0 z-40 h-screen transition-all duration-300 bg-white shadow-xl flex flex-col",
+          "fixed top-0 left-0 z-40 h-screen transition-all duration-300 bg-sidebar text-sidebar-foreground flex flex-col",
           isOpen ? "w-64" : "w-20",
           "lg:relative lg:shadow-none lg:translate-x-0 lg:h-screen",
           !isOpen && isHovered && "lg:w-64"
@@ -78,7 +80,7 @@ const Sidebar = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="flex items-center justify-between h-16 px-4 border-b">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
           <AnimatePresence mode="wait">
             {(isOpen || isHovered) ? (
               <motion.div
@@ -88,7 +90,7 @@ const Sidebar = () => {
                 exit={{ opacity: 0 }}
                 className="flex items-center"
               >
-                <span className="text-dental-500 font-bold text-lg">Brain Dental X</span>
+                <span className="text-white font-bold text-lg">Brain Dental X</span>
               </motion.div>
             ) : (
               <motion.div
@@ -97,12 +99,12 @@ const Sidebar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <span className="text-dental-500 font-bold text-lg">BDX</span>
+                <span className="text-white font-bold text-lg">BDX</span>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <button onClick={toggleSidebar} className="hidden lg:flex items-center justify-center text-gray-500 hover:text-dental-500 transition-colors duration-200">
+          <button onClick={toggleSidebar} className="hidden lg:flex items-center justify-center text-sidebar-foreground/70 hover:text-white transition-colors duration-200">
             <ChevronRight className={`h-5 w-5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
           </button>
         </div>
@@ -120,8 +122,8 @@ const Sidebar = () => {
                     className={({ isActive }) => cn(
                       "flex items-center py-3 px-4 rounded-lg transition-all duration-200 group",
                       isActive 
-                        ? "bg-dental-50 text-dental-600 font-medium" 
-                        : "text-gray-500 hover:bg-dental-50 hover:text-dental-600"
+                        ? "bg-sidebar-accent text-white font-medium" 
+                        : "text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-white"
                     )}
                   >
                     <Icon className="h-5 w-5 flex-shrink-0" />
@@ -143,7 +145,7 @@ const Sidebar = () => {
                     {isActive && (
                       <motion.div
                         layoutId="activeIndicator"
-                        className="absolute right-0 w-1 h-8 bg-dental-500 rounded-l-full"
+                        className="absolute right-0 w-1 h-8 bg-dental-300 rounded-l-full"
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
                     )}
@@ -154,7 +156,7 @@ const Sidebar = () => {
           </ul>
         </div>
         
-        <div className="p-4 border-t">
+        <div className="p-4 border-t border-sidebar-border">
           <div className={cn(
             "flex items-center px-3 py-2 rounded-lg",
             isOpen || isHovered ? "justify-start" : "justify-center"
@@ -172,8 +174,8 @@ const Sidebar = () => {
                   transition={{ duration: 0.2 }}
                   className="ml-3"
                 >
-                  <p className="text-sm font-medium">Dr. Sophie Martin</p>
-                  <p className="text-xs text-gray-500">Dentiste</p>
+                  <p className="text-sm font-medium text-white">Dr. Sophie Martin</p>
+                  <p className="text-xs text-sidebar-foreground/70">Dentiste</p>
                 </motion.div>
               )}
             </AnimatePresence>

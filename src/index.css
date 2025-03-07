@@ -37,13 +37,13 @@
 
     --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 5% 26%;
+    --sidebar-background: 215 60% 20%;
+    --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 210 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 240 6% 10%;
-    --sidebar-border: 220 13% 91%;
+    --sidebar-accent: 214 60% 26%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 214 55% 25%;
     --sidebar-ring: 217 91% 60%;
   }
 
@@ -197,3 +197,21 @@
 .page-exit-active {
   @apply opacity-0 transition-opacity duration-300;
 }
+
+/* Styles pour la landing page */
+.hero-section {
+  @apply relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-dental-500 to-dental-700 text-white;
+}
+
+.service-card {
+  @apply p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center;
+}
+
+.service-icon {
+  @apply w-16 h-16 mb-4 text-dental-500 p-3 bg-dental-50 rounded-full;
+}
+
+.contact-info {
+  @apply flex items-center gap-3 text-gray-600 p-3 rounded-lg hover:bg-dental-50 transition-colors;
+}
+

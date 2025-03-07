@@ -10,9 +10,11 @@ import { AnimatePresence } from "framer-motion";
 import MainLayout from "./components/layout/MainLayout";
 
 // Pages
+import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import AppointmentsPage from "./pages/AppointmentsPage";
 import PatientsPage from "./pages/PatientsPage";
+import DoctorsPage from "./pages/DoctorsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,10 +27,12 @@ const App = () => (
       <BrowserRouter>
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<MainLayout />}>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/app" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="rendez-vous" element={<AppointmentsPage />} />
               <Route path="patients" element={<PatientsPage />} />
+              <Route path="docteurs" element={<DoctorsPage />} />
               <Route path="dossiers" element={<Dashboard />} />
               <Route path="facturation" element={<Dashboard />} />
               <Route path="parametres" element={<Dashboard />} />
